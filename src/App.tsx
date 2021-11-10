@@ -3,7 +3,7 @@ import type { Component } from "solid-js";
 const App: Component = () => {
   return (
     <div>
-      <h1 class="text-custom-violet fs-900 uppercase">Hello World</h1>
+      <h1 class="text-white fs-600 uppercase fw-700">IP Address Tracker</h1>
     </div>
   );
 };

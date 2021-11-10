@@ -1,1 +1,10 @@
 // Project-Specific Global Style Rules
+
+body {
+  font-family: "Rubik", sans-serif;
+
+  letter-spacing: -0.23px;
+
+  color: hsl(var(--clr-gray-200));
+  background-color: hsl(var(--clr-blue));
+}
