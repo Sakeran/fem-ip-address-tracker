@@ -1,0 +1,9 @@
+@use "sass:color";
+
+// Converts an HSL value into just the list of values
+// Ex: hsl(150, 50%, 25%) -> 150 50% 25%
+@function getHSLList($value) {
+  @return #{color.hue($value)} #{color.saturation($value)} #{color.lightness(
+      $value
+    )};
+}

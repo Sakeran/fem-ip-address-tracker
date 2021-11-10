@@ -1,0 +1,22 @@
+.cover {
+  display: flex;
+  flex-direction: column;
+
+  min-height: var(--cover-height, 100vh);
+
+  & > * {
+    margin-block: var(--cover-spacing, 1rem);
+  }
+
+  & > *.cover-primary {
+    margin-block: auto;
+  }
+
+  & > *:first-child:not(.cover-primary) {
+    margin-block-start: var(--cover-spacing, 1rem);
+  }
+
+  & > *:last-child:not(.cover-primary) {
+    margin-block-end: var(--cover-spacing, 1rem);
+  }
+}

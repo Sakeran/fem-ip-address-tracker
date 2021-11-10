@@ -1,0 +1,22 @@
+/////////////////////////
+// :root selector
+/////////////////////////
+
+@use "./abstracts/colors";
+@use "./abstracts/font-sizes";
+@use "./abstracts/font-families";
+@use "./abstracts/spacing";
+
+:root {
+  // Color Custom Properties
+  @include colors.colorsForRoot;
+
+  // Fant Family Properties
+  @include font-families.fontFamiliesForRoot;
+
+  // Font Size Properties
+  @include font-sizes.fontSizesForRoot;
+
+  // Spacing Properties
+  @include spacing.spacingSizesForRoot;
+}

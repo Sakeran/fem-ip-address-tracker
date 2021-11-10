@@ -1,0 +1,7 @@
+@use "../config";
+
+@each $name, $value in config.$letter-spacing {
+  .letter-spacing-#{$name} {
+    letter-spacing: $value;
+  }
+}

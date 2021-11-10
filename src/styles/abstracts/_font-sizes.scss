@@ -1,0 +1,21 @@
+@use "sass:map";
+
+@use "../config";
+
+@mixin fontSizesForRoot() {
+  // Base Sizes
+  @each $size, $value in map.get(config.$font-sizes, "base") {
+    --fs-#{$size}: #{$value};
+  }
+
+  // Breakpoint-dependant sizes
+  $non-bases: map.remove(config.$font-sizes, "base");
+
+  @each $bp, $sizes in $non-bases {
+    @media (min-width: $bp) {
+      @each $size, $value in $sizes {
+        --fs-#{$size}: #{$value};
+      }
+    }
+  }
+}

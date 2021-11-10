@@ -1,0 +1,78 @@
+/////////////////////////////////////////////
+// Primary Project Config File
+////////////////////////////////////////////
+
+// Colors
+$colors: (
+  "custom-violet": hsl(320, 39%, 51%),
+  "gray": (
+    "300": hsl(0, 0%, 40%),
+    "400": hsl(0, 0%, 53%),
+    "500": hsl(0, 0%, 67%),
+    "600": hsl(0, 0%, 80%),
+  ),
+);
+
+// Breakpoints
+$breakpoints: (
+  "tablet": 35em,
+  "desktop": 45em,
+);
+
+// Font Families
+$font-families: (
+  "serif": serif,
+  "sans": sans-serif
+);
+
+// Font Sizes
+$font-sizes: (
+  "base": (
+    "100": 0.79rem,
+    "200": 0.88rem,
+    "300": 1rem,
+    "400": 1.125rem,
+    "500": 1.266rem,
+    "600": 1.423rem,
+    "700": 1.602rem,
+    "800": 1.802rem,
+    "900": 2.027rem,
+  ),
+  "35em": (
+    "400": 1.5rem,
+    "500": 2.5rem,
+    "600": 3.375rem,
+  ),
+);
+
+// Margin/Padding Sizes
+$spacings: (
+  "base": (
+    "100": 0.79rem,
+    "200": 0.88rem,
+    "300": 1rem,
+    "400": 1.125rem,
+    "500": 1.266rem,
+    "600": 1.423rem,
+    "700": 1.602rem,
+    "800": 1.802rem,
+    "900": 2.027rem,
+  ),
+);
+
+// Block Widths
+$block-widths: (
+  "min": min-content,
+  "max": max-content,
+  "full": 100%,
+  "half": 50%,
+  "one-third": 33%,
+  "two-thirds": 66%,
+);
+
+// Letter Spacing
+
+$letter-spacing: (
+  "1": 1px,
+  "2": 5px,
+);

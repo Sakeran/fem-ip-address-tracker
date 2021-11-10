@@ -1,0 +1,20 @@
+@use "sass:list";
+
+@use "../config";
+
+
+// Font Size Utility Classes
+
+$classesAdded: ();
+
+@each $bp, $sizes in config.$font-sizes {
+  @each $size, $value in $sizes {
+    @if not list.index($classesAdded, $size) {
+      .fs-#{$size} {
+        font-size: var(--fs-#{$size});
+      }
+
+      $classesAdded: append($classesAdded, $size);
+    }
+  }
+}

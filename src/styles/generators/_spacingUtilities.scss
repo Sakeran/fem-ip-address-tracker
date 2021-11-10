@@ -1,0 +1,39 @@
+@use "sass:list";
+
+@use "../config";
+
+// Font Size Utility Classes
+
+$sides: ("top", "bottom", "left", "right", "inline", "block");
+
+$classesAdded: ();
+
+@each $bp, $sizes in config.$spacings {
+  @each $size, $value in $sizes {
+    @if not list.index($classesAdded, $size) {
+      // Margin
+      .gap-#{$size} {
+        margin: var(--s-#{$size});
+      }
+
+      // Padding
+      .pad-#{$size} {
+        padding: var(--s-#{$size});
+      }
+
+      @each $side in $sides {
+        // Margin Side
+        .gap-#{$side}-#{$size} {
+          margin-#{$side}: var(--s-#{$size});
+        }
+        
+        // Padding Side
+        .pad-#{$side}-#{$size} {
+          padding-#{$side}: var(--s-#{$size});
+        }
+      }
+
+      $classesAdded: append($classesAdded, $size);
+    }
+  }
+}

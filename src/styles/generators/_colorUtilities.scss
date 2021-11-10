@@ -1,0 +1,30 @@
+@use "sass:meta";
+
+@use "../config";
+
+// Color utility classes (text, background colors)
+@each $color, $shades in config.$colors {
+  @if meta.type-of($shades) != "map" {
+    // Singular Color
+    .text-#{$color} {
+      color: hsl(var(--clr-#{$color}));
+    }
+
+    .bg-#{$color} {
+      background-color: hsl(var(--clr-#{$color}));
+    }
+
+  } @else {
+    // (Shade: Value) Mapping
+    @each $shade, $value in $shades {
+      .text-#{$color}-#{$shade} {
+        color: hsl(var(--clr-#{$color}-#{$shade}));
+      }
+  
+      .bg-#{$color}-#{$shade} {
+        background-color: hsl(var(--clr-#{$color}-#{$shade}));
+      }
+    }
+  }
+
+}

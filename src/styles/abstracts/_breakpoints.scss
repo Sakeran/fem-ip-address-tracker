@@ -1,0 +1,37 @@
+@use "sass:map";
+
+@use "../config";
+
+
+// Generated media query blocks from config
+
+@mixin mq($size) {
+  $bp-size: map.get(config.$breakpoints, $size);
+
+  @media only screen and (min-width: $bp-size) {
+    @content;
+  }
+}
+
+@mixin mq-max($size) {
+  $bp-size: map.get(config.$breakpoints, $size);
+
+  @media only screen and (max-width: $bp-size) {
+    @content;
+  }
+}
+
+// Custom, explicitly-sized media queries
+
+@mixin mq-custom($explicit-size) {
+  @media only screen and (min-width: $explicit-size) {
+    @content;
+  }
+}
+
+@mixin mq-max-custom($explicit-size) {
+  @media only screen and (max-width: $explicit-size) {
+    @content;
+  }
+}
+

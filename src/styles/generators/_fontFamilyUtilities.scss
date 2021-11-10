@@ -1,0 +1,8 @@
+@use "../config";
+
+// Font Family Utility Classes
+@each $name, $value in config.$font-families {
+  .ff-#{$name} {
+    font-family: var(--ff-#{$name});
+  }
+}

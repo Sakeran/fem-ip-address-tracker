@@ -1,0 +1,21 @@
+@use "sass:map";
+
+@use "../config";
+
+@mixin spacingSizesForRoot() {
+  // Base Sizes
+  @each $size, $value in map.get(config.$spacings, "base") {
+    --s-#{$size}: #{$value};
+  }
+
+  // Breakpoint-dependant sizes
+  $non-bases: map.remove(config.$spacings, "base");
+
+  @each $bp, $sizes in $non-bases {
+    @media (min-width: $bp) {
+      @each $size, $value in $sizes {
+        --s-#{$size}: #{$value};
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+@use "../config";
+
+// Custom properties for font families
+@mixin fontFamiliesForRoot() {
+  @each $family, $value in config.$font-families {
+    --ff-#{$family}: #{$value};
+  }
+}

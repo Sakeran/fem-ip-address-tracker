@@ -1,0 +1,8 @@
+@use "../config";
+
+// Generate block-width utilities (ex: width-full)
+@each $name, $value in config.$block-widths {
+  .width-#{$name} {
+    width: $value;
+  }
+}

@@ -1,0 +1,20 @@
+@use "sass:meta";
+
+@use "../config";
+@use "../functions/getHSLList" as *;
+
+// Generate custom variables for each color.
+// To be called in the :root selector
+@mixin colorsForRoot() {
+  @each $color, $shades in config.$colors {
+    @if meta.type-of($shades) != "map" {
+      // Singular Color
+      --clr-#{$color}: #{getHSLList($shades)};
+    } @else {
+      // (Shade: Value) Mapping
+      @each $shade, $value in $shades {
+        --clr-#{$color}-#{$shade}: #{getHSLList($value)};
+      }
+    }
+  }
+}
