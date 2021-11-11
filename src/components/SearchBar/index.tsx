@@ -1,5 +1,7 @@
 import { Component } from "solid-js";
 
+import isURL from "validator/lib/isURL";
+
 import IconArrow from "../../assets/icon-arrow.svg";
 
 import styles from "./SearchBar.module.scss";
@@ -7,13 +9,14 @@ import styles from "./SearchBar.module.scss";
 export const SearchBar: Component<{
   onNewSearch: (newInput: string) => void;
 }> = (props) => {
-
   let ipSearch: HTMLInputElement | undefined;
 
   const submit = (e: Event) => {
     e.preventDefault();
 
     if (!ipSearch?.value) return;
+
+    if (!isURL(ipSearch.value)) return;
 
     props.onNewSearch(ipSearch.value);
   };
