@@ -1,0 +1,38 @@
+.SearchBar {
+  display: flex;
+
+  border-radius: 1rem;
+  overflow: hidden;
+
+  font-size: var(--fs-400);
+
+  input[type="search"] {
+    border: 0;
+    flex-grow: 1;
+    padding-block: 1.125rem;
+    padding-inline-start: 1.5rem;
+  }
+
+  button {
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    cursor: pointer;
+
+    width: 3.625rem;
+    aspect-ratio: 1;
+
+    border: 0;
+    
+    color: white;
+    background-color: hsl(var(--clr-black));
+
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover, &:focus-visible {
+      background-color: hsl(var(--clr-gray-200));
+    }
+  }
+}
