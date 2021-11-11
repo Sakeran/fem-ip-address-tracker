@@ -1,0 +1,49 @@
+@use "../../styles/abstracts/breakpoints";
+
+.IpDetails {
+  padding: 1.625rem 1.5rem;
+  border-radius: 1rem;
+
+  text-align: center;
+
+  box-shadow: 0 3.125rem 3.125rem -2rem rgb(0 0 0 / 0.098);
+
+  @include breakpoints.mq(desktop) {
+    padding: 2.375rem 2rem;
+  }
+
+
+  dl {
+    --gap: 1.5rem;
+
+    @include breakpoints.mq(desktop) {
+      text-align: start;
+      flex-direction: row;
+    }
+
+    & > div {
+      flex-grow: 1;
+      flex-basis: 100%;
+
+      position: relative;
+      --flow-space: 0.5rem;
+
+      @include breakpoints.mq(desktop) {
+        --flow-space: 0.75rem;
+
+        &:not(:first-child) {
+          padding-inline-start: 2rem;
+
+          &::before {
+            content: "";
+            position: absolute;
+            inset-block: 0;
+            inset-inline-start: 0;
+            width: 2px;
+            background-color: hsl(0 0% 0% / 0.15);
+          }
+        }
+      }
+    }
+  }
+}
