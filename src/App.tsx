@@ -6,13 +6,18 @@ import { StreetMap } from "./components/StreetMap";
 import styles from "./App.module.scss";
 
 const App: Component = () => {
+
+  const onNewSearch = (newSearch: string) => {
+    console.log(newSearch);
+  }
+
   return (
     <div class={styles.Layout}>
       <div class={`${styles.LayoutUI} flow`}>
         <h1 class="text-white fs-600 fw-500 text-center">IP Address Tracker</h1>
 
         <div class={`${styles.SearchBarContainer} center`}>
-          <SearchBar />
+          <SearchBar onNewSearch={onNewSearch} />
         </div>
 
         <div class={`${styles.DetailsContainer}`}>
