@@ -1,5 +1,5 @@
 import { Component } from "solid-js";
 
 export const StreetMap: Component = () => {
-  return <div>StreetMap</div>;
+  return <div class="bg-gray-400">StreetMap</div>;
 };
