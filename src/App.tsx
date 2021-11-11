@@ -1,15 +1,24 @@
-import type { Component } from "solid-js";
+import {
+  Component,
+  createEffect,
+  createResource,
+  createSignal,
+} from "solid-js";
 import { IpDetails } from "./components/IpDetails";
 import { SearchBar } from "./components/SearchBar";
 import { StreetMap } from "./components/StreetMap";
 
+import { ipLookup, IpLookupTarget } from "./adapters/ipLookup";
+
 import styles from "./App.module.scss";
 
 const App: Component = () => {
+  const [query, setQuery] = createSignal<IpLookupTarget>({ self: true });
+  const [ipData] = createResource(query, ipLookup);
 
-  const onNewSearch = (newSearch: string) => {
-    console.log(newSearch);
-  }
+  const onNewSearch = (newSearch: IpLookupTarget) => {
+    setQuery(() => newSearch);
+  };
 
   return (
     <div class={styles.Layout}>
@@ -22,10 +31,9 @@ const App: Component = () => {
 
         <div class={`${styles.DetailsContainer}`}>
           <div className="center">
-            <IpDetails />
+            <IpDetails details={ipData()} />
           </div>
         </div>
-
       </div>
 
       <div class={`${styles.MapContainer}`}>
