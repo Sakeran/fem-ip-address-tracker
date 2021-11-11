@@ -3,13 +3,29 @@ import { IpDetails } from "./components/IpDetails";
 import { SearchBar } from "./components/SearchBar";
 import { StreetMap } from "./components/StreetMap";
 
+import styles from "./App.module.scss";
+
 const App: Component = () => {
   return (
-    <div>
-      <h1 class="text-white fs-600 uppercase fw-700">IP Address Tracker</h1>
-      <SearchBar />
-      <IpDetails />
-      <StreetMap />
+    <div class={styles.Layout}>
+      <div class={`${styles.LayoutUI} flow`}>
+        <h1 class="text-white fs-600 fw-500 text-center">IP Address Tracker</h1>
+
+        <div class={`${styles.SearchBarContainer} center`}>
+          <SearchBar />
+        </div>
+
+        <div class={`${styles.DetailsContainer}`}>
+          <div className="center">
+            <IpDetails />
+          </div>
+        </div>
+
+      </div>
+
+      <div class={`${styles.MapContainer}`}>
+        <StreetMap />
+      </div>
     </div>
   );
 };

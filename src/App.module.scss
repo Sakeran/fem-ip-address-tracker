@@ -1,0 +1,52 @@
+@use "./styles/abstracts/breakpoints";
+
+.Layout {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.LayoutUI {
+  --flow-space: 1.5rem;
+  position: relative;
+  
+  padding-block: 1.625rem 11.125rem;
+  
+  @include breakpoints.mq(desktop) {
+    --flow-space: 2rem;
+    padding-block: 2rem 8rem;
+  }
+
+  background-image: linear-gradient(225deg, hsl(224 85% 66% / 0.25) 3%, hsl(245 43% 42% / 0.25)),
+    url("./assets/pattern-bg.png");
+  background-size: cover;
+}
+
+.SearchBarContainer {
+  --center-padding: 1.5rem;
+
+  max-width: 35em;
+}
+
+.DetailsContainer {
+  position: absolute;
+  inset-block-start: 100%;
+  inset-inline: 0;
+
+  margin-block: 0;
+  
+  transform: translateY(-50%);
+  
+  
+  & > div {
+    --center-padding: 1.5rem;
+    --center-max: 70em;
+  }
+}
+
+.MapContainer {
+  flex-grow: 1;
+
+  display: grid;
+}
