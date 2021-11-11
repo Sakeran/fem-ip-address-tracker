@@ -1,24 +1,41 @@
 import { Component } from "solid-js";
+import isIp from "validator/lib/isIp";
+import isFQDN from "validator/lib/isFQDN";
 
-import isURL from "validator/lib/isURL";
+import { IpLookupTarget } from "../../adapters/ipLookup";
 
 import IconArrow from "../../assets/icon-arrow.svg";
 
 import styles from "./SearchBar.module.scss";
 
 export const SearchBar: Component<{
-  onNewSearch: (newInput: string) => void;
+  onNewSearch: (newInput: IpLookupTarget) => void;
 }> = (props) => {
   let ipSearch: HTMLInputElement | undefined;
 
   const submit = (e: Event) => {
     e.preventDefault();
 
-    if (!ipSearch?.value) return;
+    const search = ipSearch?.value;
+    if (!search) return;
 
-    if (!isURL(ipSearch.value)) return;
+    // Return an IP search, if it is an IP address
+    if (isIp(search)) {
+      return props.onNewSearch({
+        ipAddr: search,
+      });
+    }
 
-    props.onNewSearch(ipSearch.value);
+    // Return a domain search, if it is a FQDN
+    if (isFQDN(search)) {
+      return props.onNewSearch({
+        domain: search,
+      });
+    }
+
+    // Otherwise, display a hint
+    // TODO - Display Hint
+    console.log("Invalid Query");
   };
 
   return (
