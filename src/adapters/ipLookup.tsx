@@ -28,40 +28,40 @@ export interface IpLookupResult {
 }
 
 // Temp. Stub
-const resStub: IpLookupResult = {
-  ip: "8.8.8.8",
-  location: {
-    country: "US",
-    region: "California",
-    city: "Mountain View",
-    lat: 37.40599,
-    lng: -122.078514,
-    postalCode: "94043",
-    timezone: "-07:00",
-    geonameId: 5375481,
-  },
-  domains: [
-    "0d2.net",
-    "003725.com",
-    "0f6.b0094c.cn",
-    "007515.com",
-    "0guhi.jocose.cn",
-  ],
-  as: {
-    asn: 15169,
-    name: "Google LLC",
-    route: "8.8.8.0/24",
-    domain: "https://about.google/intl/en/",
-    type: "Content",
-  },
-  isp: "Google LLC",
-};
+// const resStub: IpLookupResult = {
+//   ip: "8.8.8.8",
+//   location: {
+//     country: "US",
+//     region: "California",
+//     city: "Mountain View",
+//     lat: 37.40599,
+//     lng: -122.078514,
+//     postalCode: "94043",
+//     timezone: "-07:00",
+//     geonameId: 5375481,
+//   },
+//   domains: [
+//     "0d2.net",
+//     "003725.com",
+//     "0f6.b0094c.cn",
+//     "007515.com",
+//     "0guhi.jocose.cn",
+//   ],
+//   as: {
+//     asn: 15169,
+//     name: "Google LLC",
+//     route: "8.8.8.0/24",
+//     domain: "https://about.google/intl/en/",
+//     type: "Content",
+//   },
+//   isp: "Google LLC",
+// };
 
 export async function ipLookup(
   target: IpLookupTarget
 ): Promise<IpLookupResult> {
   const request = new URL(
-    "https://geo.ipify.org/api/v2/country,city?apiKey=at_vxUDa87tQTg0NlGqoUVERbOR1R0Z0"
+    "https://us-central1-ip-addr-proxy.cloudfunctions.net/ipProxy"
   );
 
   if (!("self" in target)) {
@@ -72,10 +72,5 @@ export async function ipLookup(
     }
   }
 
-  console.log(request.href);
-
-  // Simulate fetch time
-  return new Promise((r) => {
-    setTimeout(() => r(resStub), 20);
-  });
+  return (await fetch(request.href)).json();
 }
