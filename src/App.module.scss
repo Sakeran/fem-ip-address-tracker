@@ -10,6 +10,9 @@
 .LayoutUI {
   --flow-space: 1.5rem;
   position: relative;
+
+  // Ensure the UI is displayed over the map.
+  z-index: 1000;
   
   padding-block: 1.625rem 11.125rem;
   

@@ -37,7 +37,7 @@ const App: Component = () => {
       </div>
 
       <div class={`${styles.MapContainer}`}>
-        <StreetMap />
+        <StreetMap details={ipData()}/>
       </div>
     </div>
   );
