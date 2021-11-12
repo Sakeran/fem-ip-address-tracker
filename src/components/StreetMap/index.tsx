@@ -3,7 +3,7 @@ import L from "leaflet";
 
 import "leaflet/dist/leaflet.css";
 
-import { IpLookupResult } from "../../adapters/ipLookup";
+import { IpLookupResponse } from "../../adapters/ipLookup";
 import MapIcon from "../../assets/icon-location.svg";
 
 const tileLayer = L.tileLayer(
@@ -24,7 +24,7 @@ const LocationIcon: L.Icon = L.icon({
 });
 
 export const StreetMap: Component<{
-  details: IpLookupResult | undefined;
+  details: IpLookupResponse | undefined;
 }> = (props) => {
   let mapRef: HTMLDivElement | undefined;
 
@@ -54,6 +54,7 @@ export const StreetMap: Component<{
 
   createEffect(() => {
     if (!props.details) return;
+    if("error" in props.details) return;
 
     const lmap = getMap();
     if (!lmap) return;

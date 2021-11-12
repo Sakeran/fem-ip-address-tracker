@@ -8,6 +8,8 @@
 
   box-shadow: 0 3.125rem 3.125rem -2rem rgb(0 0 0 / 0.098);
 
+  min-height: 10rem;
+
   @include breakpoints.mq(desktop) {
     padding: 2.375rem 2rem;
   }
