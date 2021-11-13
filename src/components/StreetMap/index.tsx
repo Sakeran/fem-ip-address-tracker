@@ -1,10 +1,15 @@
-import { Component, createEffect } from "solid-js";
+import { Component, createEffect, Show } from "solid-js";
 import L from "leaflet";
 
 import "leaflet/dist/leaflet.css";
 
 import { IpLookupResponse } from "../../adapters/ipLookup";
+
 import MapIcon from "../../assets/icon-location.svg";
+import Spinner from "../../assets/Spinner.svg";
+
+import styles from "./StreetMap.module.scss";
+
 
 const tileLayer = L.tileLayer(
   "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
@@ -22,6 +27,14 @@ const tileLayer = L.tileLayer(
 const LocationIcon: L.Icon = L.icon({
   iconUrl: MapIcon,
 });
+
+const MapLoadingComponent: Component = () => {
+  return (
+    <div class={styles.MapLoading}>
+      <img src={Spinner} alt="" />
+    </div>
+  );
+};
 
 export const StreetMap: Component<{
   details: IpLookupResponse | undefined;
@@ -54,7 +67,7 @@ export const StreetMap: Component<{
 
   createEffect(() => {
     if (!props.details) return;
-    if("error" in props.details) return;
+    if ("error" in props.details) return;
 
     const lmap = getMap();
     if (!lmap) return;
@@ -65,5 +78,12 @@ export const StreetMap: Component<{
     lmap.setView([lat, lng], 13);
   });
 
-  return <div ref={mapRef}></div>;
+  return (
+      <>
+      <Show when={!props.details || "error" in props.details}>
+        <MapLoadingComponent />
+      </Show>
+      <div ref={mapRef}></div>
+      </>
+  );
 };

@@ -87,6 +87,6 @@ export async function ipLookup(
 
 
   // return (await fetch(request.href)).json();
-  return errorStub;
   return await new Promise(r => setTimeout(() => r(resStub), 2000));
+  return errorStub;
 }
