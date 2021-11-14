@@ -1,7 +1,7 @@
 export type IpLookupTarget =
-| { domain: string }
-| { ipAddr: string }
-| { self: true };
+  | { domain: string }
+  | { ipAddr: string }
+  | { self: true };
 
 export type IpLookupResponse = IpLookupResult | IpLookupError;
 
@@ -33,41 +33,6 @@ export interface IpLookupError {
   error: string;
 }
 
-
-// Temp. Stub
-const resStub: IpLookupResult = {
-  ip: "8.8.8.8",
-  location: {
-    country: "US",
-    region: "California",
-    city: "Mountain View",
-    lat: 37.40599,
-    lng: -122.078514,
-    postalCode: "94043",
-    timezone: "-07:00",
-    geonameId: 5375481,
-  },
-  domains: [
-    "0d2.net",
-    "003725.com",
-    "0f6.b0094c.cn",
-    "007515.com",
-    "0guhi.jocose.cn",
-  ],
-  as: {
-    asn: 15169,
-    name: "Google LLC",
-    route: "8.8.8.0/24",
-    domain: "https://about.google/intl/en/",
-    type: "Content",
-  },
-  isp: "Google LLC",
-};
-
-const errorStub: IpLookupError = {
-  error: "Test Error",
-};
-
 export async function ipLookup(
   target: IpLookupTarget
 ): Promise<IpLookupResponse> {
@@ -83,7 +48,9 @@ export async function ipLookup(
     }
   }
 
-  return await new Promise(r => setTimeout(() => r(resStub), 2000));
-  // return (await fetch(request.href)).json();
-  // return await new Promise(r => setTimeout(() => r(errorStub), 2000));
+  try {
+    return (await fetch(request.href)).json();
+  } catch {
+    return { error: "Request Failed" };
+  }
 }
