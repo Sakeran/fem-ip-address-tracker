@@ -35,9 +35,19 @@ const showISP = (details: IpLookupResult): string => {
 export const IpDetails: Component<{
   details: Resource<IpLookupResponse | undefined>;
 }> = (props) => {
+  
+  const showData = () => {
+    if (props.details.loading || props.details.error) return false;  
+    const details = props.details();
+    if (!details) return false;
+
+    if ("error" in details) return false;
+    return true;
+  }
+
   return (
     <div class={`bg-white ${styles.IpDetails}`}>
-      <Show when={!(props.details.loading || props.details.error)}>
+      <Show when={showData()}>
         <dl class="flex-col">
           <div class="flow">
             <dt class="text-gray-400 fs-200 fw-700 uppercase letter-spacing-1">
