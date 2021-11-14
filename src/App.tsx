@@ -57,13 +57,13 @@ const App: Component = () => {
 
         <div class={`${styles.DetailsContainer}`}>
           <div className="center">
-            <IpDetails details={ipData()} />
+            <IpDetails details={ipData} />
           </div>
         </div>
       </div>
 
       <div class={`${styles.MapContainer}`}>
-        <StreetMap details={ipData()} />
+        <StreetMap details={ipData} />
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { Component, Show } from "solid-js";
+import { Component, Resource, Show } from "solid-js";
 import { toAbbr } from "convert-region";
 import { IpLookupResponse, IpLookupResult } from "../../adapters/ipLookup";
 
@@ -33,35 +33,35 @@ const showISP = (details: IpLookupResult): string => {
 };
 
 export const IpDetails: Component<{
-  details: IpLookupResponse | undefined;
+  details: Resource<IpLookupResponse | undefined>;
 }> = (props) => {
   return (
     <div class={`bg-white ${styles.IpDetails}`}>
-      <Show when={props.details && "ip" in props.details}>
+      <Show when={!(props.details.loading || props.details.error)}>
         <dl class="flex-col">
           <div class="flow">
             <dt class="text-gray-400 fs-200 fw-700 uppercase letter-spacing-1">
               Ip Address
             </dt>
-            <dd class="fs-500 fw-500">{showIpAddress(props.details as IpLookupResult)}</dd>
+            <dd class="fs-500 fw-500">{showIpAddress(props.details() as IpLookupResult)}</dd>
           </div>
           <div class="flow">
             <dt class="text-gray-400 fs-200 fw-700 uppercase letter-spacing-1">
               Location
             </dt>
-            <dd class="fs-500 fw-500">{showLocation(props.details as IpLookupResult)}</dd>
+            <dd class="fs-500 fw-500">{showLocation(props.details() as IpLookupResult)}</dd>
           </div>
           <div class="flow">
             <dt class="text-gray-400 fs-200 fw-700 uppercase letter-spacing-1">
               Timezone
             </dt>
-            <dd class="fs-500 fw-500">{showTimezone(props.details as IpLookupResult)}</dd>
+            <dd class="fs-500 fw-500">{showTimezone(props.details() as IpLookupResult)}</dd>
           </div>
           <div class="flow">
             <dt class="text-gray-400 fs-200 fw-700 uppercase letter-spacing-1">
               ISP
             </dt>
-            <dd class="fs-500 fw-500">{showISP(props.details as IpLookupResult)}</dd>
+            <dd class="fs-500 fw-500">{showISP(props.details() as IpLookupResult)}</dd>
           </div>
         </dl>
       </Show>

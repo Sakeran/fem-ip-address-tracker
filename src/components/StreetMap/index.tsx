@@ -1,4 +1,4 @@
-import { Component, createEffect, Show } from "solid-js";
+import { Component, createEffect, Resource, Show } from "solid-js";
 import L from "leaflet";
 
 import "leaflet/dist/leaflet.css";
@@ -37,7 +37,7 @@ const MapLoadingComponent: Component = () => {
 };
 
 export const StreetMap: Component<{
-  details: IpLookupResponse | undefined;
+  details: Resource<IpLookupResponse | undefined>;
 }> = (props) => {
   let mapRef: HTMLDivElement | undefined;
 
@@ -66,13 +66,16 @@ export const StreetMap: Component<{
   };
 
   createEffect(() => {
-    if (!props.details) return;
-    if ("error" in props.details) return;
+    if (props.details.loading || props.details.error) return;
+
+    const details = props.details();
+    if (!details) return;
+    if ("error" in details) return;
 
     const lmap = getMap();
     if (!lmap) return;
 
-    const { lat, lng } = props.details.location;
+    const { lat, lng } = details.location;
 
     leafletMarker.setLatLng([lat, lng]);
     lmap.setView([lat, lng], 13);
@@ -80,7 +83,7 @@ export const StreetMap: Component<{
 
   return (
       <>
-      <Show when={!props.details || "error" in props.details}>
+      <Show when={props.details.loading}>
         <MapLoadingComponent />
       </Show>
       <div ref={mapRef}></div>
