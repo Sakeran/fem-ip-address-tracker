@@ -3,7 +3,14 @@ const purgecss = require("@fullhuman/postcss-purgecss");
 module.exports = {
   plugins: [
     purgecss({
-      content: ["./src/**/*.@(tsx|html)", "./index.html"],
+      safelist: {
+        greedy: [/leaflet/],
+      },
+      content: [
+        "./src/**/*.@(tsx|html)",
+        "./index.html",
+        "./node_modules/leaflet/**/*.js",
+      ],
     }),
   ],
 };
